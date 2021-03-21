@@ -1,0 +1,70 @@
+esphome:
+  name: esphomedimmer
+  platform: ESP8266
+  board: d1_mini
+
+wifi:
+  ssid: "pyt-wifi"
+  password: "120589s4ed6w"
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Esphomedimmer Fallback Hotspot"
+    password: "xo2enxw2IpS2"
+
+captive_portal:
+
+# Enable logging
+logger:
+  level: DEBUG
+
+# Enable Home Assistant API
+api:
+  password: "s4ed6w"
+
+ota:
+  password: "s4ed6w"
+
+output:
+  - platform: ac_dimmer
+    id: dimmer1
+    gate_pin: D3
+    zero_cross_pin:
+      number: D4
+      mode: INPUT
+      inverted: yes
+  - platform: ac_dimmer
+    id: dimmer2
+    gate_pin: D2
+    zero_cross_pin:
+      number: D4
+      mode: INPUT
+      inverted: yes
+  - platform: ac_dimmer
+    id: dimmer3
+    gate_pin: D1
+    zero_cross_pin:
+      number: D4
+      mode: INPUT
+      inverted: yes
+  - platform: ac_dimmer
+    id: dimmer4
+    gate_pin: D0
+    zero_cross_pin:
+      number: D4
+      mode: INPUT
+      inverted: yes
+
+light:
+  - platform: monochromatic
+    output: dimmer1
+    name: Dimmerized Light 1
+  - platform: monochromatic
+    output: dimmer2
+    name: Dimmerized Light 2
+  - platform: monochromatic
+    output: dimmer3
+    name: Dimmerized Light 3 
+  - platform: monochromatic
+    output: dimmer4
+    name: Dimmerized Light 4
